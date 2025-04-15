@@ -101,11 +101,13 @@ app.use((req,res,next)=>{
 //   res.send(registeredUser);
 // })
 
-app.use("/listings",listingRouter);
-app.use("/listings/:id/reviews",reviewRouter);
 app.use("/",userRouter)
 
+app.use("/listings",listingRouter);
+app.use("/listings/:id/reviews",reviewRouter);
+
 app.all("*",(req,res,next)=>{
+   console.log("enter in the universal route or All route");
    next(new ExpressError(404,"Page Not Found!"));
 });
 
@@ -116,6 +118,6 @@ app.use((err,req,res,next)=>{
    //res.status(statusCode).send(message);
 });
 
-app.listen(port,()=>{
-  console.log(`server is listening to http://localhost:${port}/listings`);
+app.listen(process.env.PORT,()=>{
+  console.log(`server is listening to http://localhost:${process.env.PORT}/listings`);
 });

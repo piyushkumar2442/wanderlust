@@ -14,7 +14,7 @@ const upload = multer({storage});
  
 const validateListing =(req,res,next)=>{
     let {error}=listingSchema.validate(req.body);
-    
+    console.log("inside validate listing middleware",error.message);
     if(error){
      
        // let errMsg=error?.details?.map((el)=> el.message).join(",");
