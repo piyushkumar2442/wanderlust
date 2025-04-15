@@ -100,14 +100,16 @@ app.use((req,res,next)=>{
 //   let registeredUser=await  User.register(fakeUser,"helloworld");//static method 
 //   res.send(registeredUser);
 // })
-
+app.get("/",(req,res)=>{
+  return res.redirect("/listings");
+})
 app.use("/",userRouter)
 
 app.use("/listings",listingRouter);
 app.use("/listings/:id/reviews",reviewRouter);
 
 app.all("*",(req,res,next)=>{
-   console.log("enter in the universal route or All route");
+   
    next(new ExpressError(404,"Page Not Found!"));
 });
 
